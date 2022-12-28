@@ -3,9 +3,37 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 
-const inter = Inter({ subsets: ['latin'] })
+import Logo from '../assets/img/logo.jpg'
+import linkedInLogo from '../assets/img/linkedIn.png'
+
+import { useState } from 'react'
+
+const AboutContent = () => {
+  return (
+    <>
+      <p>This is THE place to get your free hentai fix. We work hard to bring you only the best the world of hentai has to offer. We work tirelessly to bring thousands of new hentai manga goodies every single day. Why? Because that&apos;s the best job/hobby one could hope for.</p>
+
+      <p>Our website is incredibly easy to use. Our design is simple and intuitive. It is also aesthetically pleasing. There&apos;s nothing that sticks out, there&apos;s nothing to add, really. The font choice is also among the things that we are proud of. Alright, let&apos;s walk you through all the sections featured on our website.</p>
+
+      <p>Premium lets you buy a premium pass to our hentai manga website, but it is entirely optional. There are some serious perks, but let&apos;s not dwell on that. It&apos;s up to you, anywho. The next one is categories, i.e. manga porn genres – you have adult comics, cosplay, misc., western and so forth. Plenty of amazing genres to sink your teeth in, huh? The next page is all about the characters featured on our website. Well, you are going to have a great time picking and choosing babes (and dudes, we are progressive!) that you want to see on our free hentai images/comics. There are many, MANY characters starting from everyone&apos;s favorite chicks, the likes of Ada Wong, Elizabeth, Lara Croft, Quiet, and Lightning. By the way, MLP characters are incredibly popular on here. Wonder why? So, there are popular characters and some of the most overlooked hotties from obscure games. 2B from NieR, Babydoll, Abigail Williams and the like.</p>
+
+      <p>The next sections show you the list of artists, parodies, and groups. Our tag list is also incredibly helpful. The random button is even more helpful than anything else. If you&apos;re bored and want to discover a new hottie/free hentai series to obsess over – just press the button. You are guaranteed to see something right up your alley. Well, maybe not on the first try anyway. There are also options, i.e. language and posts per page settings. Nothing too fancy, y&apos;know?</p>
+
+      <p>Now, back to the subject at hand. Free hentai manga, right? We work real hard to offer you the best experience one could hope for. That&apos;s why new images/galleries are added every single day. We literally uploaded free hentai manga day in and day out, that&apos;s how dedicated we are to making your stay here special. With all of that said and done, we have one small favor to ask of you.</p>
+
+      <p>If you really do enjoy manga porn and want to us to continue with this free website – don&apos;t be afraid to send us some feedback. Tell us your thoughts. Tell us what kind of manga porn you&apos;d like to see on here. There&apos;s no shame in asking for something. We will happily upload the stuff that you want on this website because we&apos;d like to let our community shape this experience. We want to cater to every taste. We want this to be perfect for every single user that we have.</p>
+
+      <p>Now, let&apos;s wrap this long introduction up. Enjoy your stay. Seriously, thank you for being with us and thank you for bookmarking this page. Go and find something that excites you. Get your freak on.</p>
+    </>
+  )
+}
 
 export default function Home() {
+  const [active, setActive] = useState(-1)
+
+  const toggleHandler = (id: any) => () =>
+    setActive((active) => (active === id ? -1 : id));
+
   return (
     <>
       <Head>
@@ -14,110 +42,27 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
+      
+      <section className={styles.indexSection}>
+        <Image id='logo' src={Logo} alt="portfolio-logo" width={500} />
+        <h1 className={styles.webDescription}>Personal website inspired by manga design</h1>
+        <form encType="multipart/form-data" method="POST" className={styles.searchBlock} action="/search" >
+            <input id="word" minLength={3} className={styles.searchInput} placeholder="" required name="search" />
+            <label className={styles.searchLabel} htmlFor="word">Search 443798 files...</label>
+            <input type="submit" value="Search" className={styles.searchSubmit} />
+        </form>
+        <a href="/library" className={styles.libraryLink}>Go To Library</a>
+        
+        <div id='description' className={`${styles.description}`}  >
+          
+          <p className={styles.spoiler} onClick={toggleHandler(1)}>About Long&apos;s Portfolio.com</p>
+          {active === 1 && <AboutContent />}
         </div>
+      </section>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      <div className={styles.linkedInLink_body}>
+        <a href="https://www.linkedin.com/in/long-hoang-40b1321b1/" title="My LinkedIn"><Image src={linkedInLogo} alt="Our Telegram" width={130} height={100}/></a>
+    </div>
     </>
   )
 }
